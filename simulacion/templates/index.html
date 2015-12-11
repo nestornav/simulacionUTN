@@ -12,7 +12,7 @@
 
   <form method="post" action="{{url_for('run_simulation')}}">
   	<div id="params" class="row">
-  		<div class="col-md-6">
+  		<div class="col-md-5">
   			<h4>Par&aacute;metrosTiempo de Respueta Base de Datos</h4>
   			<label>Media</label>
 		  	<input id="media_respuesta" name="media_respuesta" type="number"/>
@@ -21,16 +21,23 @@
 		  	<input id="desv_respuesta" name="desv_respuesta" type="number"/>
   		</div>
 
-  		<div class="col-md-6">
+  		<div class="col-md-4">
   			<h4>Par&aacute;metros Tiempo Ejecución Terminales</h4>
   			<label>Media</label>
 		  	<input id="media_consulta" name="media_consulta" type="number"/>
   		</div>
-		
-		<button class="btn btn-primary" type="submit">Ejecutar</button>
-  	</div>
+      
+      <div class="col-md-3">
+        <h4>Cantitdad de Corridas</h4>
+        <label>Cantidad</label>
+        <input id="numero_corridas" name="numero_corridas" type="number"/>
+		    <button class="btn btn-primary" type="submit">Ejecutar</button>
+      </div>
+  	</div>    
 
   	<div>
+
+      <h3>Iteraciones del Modelo</h3>
   		<table id="data" class="table table-hover table-striped">
   			<thead>
 		      <tr>

@@ -35,8 +35,12 @@ def run_simulation():
 	media_respuesta = float(request.form["media_respuesta"])
 	desv_respuesta = float(request.form["desv_respuesta"])
 	media_consulta = float(request.form["media_consulta"])
-	resultado = sim.simulate(media_respuesta, desv_respuesta, media_consulta)
+	numero_corridas = int(request.form["numero_corridas"])
+	
+	resultado = sim.simulate(media_respuesta, desv_respuesta, media_consulta, numero_corridas)
 	
 	return "lala"
+	
+
 
 
