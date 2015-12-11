@@ -23,7 +23,7 @@ def tiempo_ejecucion_terminal(mean, n):
 	return np.random.exponential(mean, n) + 15
 
 
-def simulate(iterations, media_respuesta, desv_respuesta, media_consulta):
+def simulate(numero_corridas, media_respuesta, desv_respuesta, media_consulta):
 	reloj, procesos_activos, db_ocupada = 0, 0, False
 	eventos = ["Inicio","Fin Ejecucion Consulta","Fin Ejecucion Procesamiento"]
 	terminales = ["ocupada"] * 20
@@ -35,7 +35,7 @@ def simulate(iterations, media_respuesta, desv_respuesta, media_consulta):
 	""" reloj = terminales_ordenadas[0][-1] """
 
 	respuestas = []
-	for iterations in xrange(iterations):
+	for iterations in xrange(numero_corridas):
 		
 		for term_id, start_time in terminales_ordenadas:
 			reloj += start_time
