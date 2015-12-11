@@ -5,7 +5,7 @@
 # IMPORTS
 # =============================================================================
 
-from flask import Flask
+from flask import Flask, render_template
 from flask.ext.script import Manager
 from flask_bootstrap import Bootstrap
 
@@ -26,8 +26,8 @@ Bootstrap(app)
 # =============================================================================
 
 @app.route("/")
-def hello():
-    return "Hello World!"
+def index():
+    return render_template('index.html', name="foo")
 
 
 
