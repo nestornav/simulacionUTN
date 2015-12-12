@@ -48,9 +48,18 @@ def run_simulation():
 
     resultados = sim.simulate(numero_corridas, media_respuesta, desv_respuesta, media_consulta)
 
+    proc_active = sim.to_ndarray(resultados, "procesos_activos")
+    stats = {
+        "max_process": proc_active.max(),
+        "demora_promedio":  sim.to_ndarray(resultados, "tiempo_respuesta_total").mean(),
+        "tiempo_ocioso": sim.to_ndarray(resultados, "tiempo_ocioso").sum(),
+        "demora_maxima": sim.to_ndarray(resultados, "tiempo_consulta_rnd").max(),
+        "promedio_gt8": (proc_active >= 8).sum() / float(len(proc_active))
+    }
+
     return render_template('index.html', resultados=resultados, media_respuesta=media_respuesta,
         desv_respuesta=desv_respuesta, media_consulta=media_consulta,
-        numero_corridas=numero_corridas)
+        numero_corridas=numero_corridas, stats=stats)
 
 
 

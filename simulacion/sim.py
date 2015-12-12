@@ -78,3 +78,8 @@ def simulate(numero_corridas, media_respuesta, desv_respuesta, media_consulta):
             reloj = tiempo_consulta_total
 
     return respuestas
+
+
+def to_ndarray(respuestas, key):
+    return  np.array([getattr(r, key) for r in respuestas])
+
