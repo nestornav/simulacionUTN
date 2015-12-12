@@ -20,7 +20,8 @@ def tiempo_respuesta(mean, std):
 
 
 def siguiente_consulta(mean):
-	return np.random.exponential(mean) + 15
+	beta = 1/mean
+	return np.random.exponential(beta) + 15
 
 
 def simulate(numero_corridas, media_respuesta, desv_respuesta, media_consulta):
@@ -28,7 +29,7 @@ def simulate(numero_corridas, media_respuesta, desv_respuesta, media_consulta):
 	tiempo_consulta_total, tiempo_respuesta_total = None, None
 	
 	respuestas = []	
-	import ipdb;ipdb.set_trace()
+	#import ipdb;ipdb.set_trace()
 	for iterations in xrange(numero_corridas):
 		if reloj == 0:
 			tiempo_consulta_rnd = siguiente_consulta(media_consulta)
