@@ -4,9 +4,7 @@
 from collections import OrderedDict, namedtuple
 
 import numpy as np
-import scipy
 
-import pygal
 
 ResponseRow = namedtuple(
     "ResponseRow",
