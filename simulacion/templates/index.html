@@ -65,7 +65,8 @@
               <td>{{resultado.tiempo_consulta_total}}</td>
               <td>{{resultado.tiempo_respuesta_rnd_db}}</td>
               <td>{{resultado.tiempo_respuesta_total}}</td>
-              <td>{% if resultado.procesos_activos %} Si {% else %} No {% endif %}</td>
+              <td>{{resultado.procesos_activos}}</td>
+              <!--<td>{% if resultado.procesos_activos %} Si {% else %} No {% endif %}</td>-->
               <td>{% if resultado.db_ocupada %} Si {% else %} No {% endif %}</td>
               <td>{{resultado.tiempo_ocioso}}</td>
             </tr>
