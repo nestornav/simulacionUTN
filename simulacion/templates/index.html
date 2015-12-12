@@ -16,6 +16,11 @@
             <li><strong>Nestor Navarro</strong> - leg.54.153</li>
             <li><a href="mailto:nestornav@gmail.com">nestornav@gmail.com</a></li>
             <li>2015/12/11</li>
+            <li>
+                <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#enunciado-modal">
+                    <span class="glyphicon glyphicon-equalizer" aria-hidden="true"></span> Enunciado
+                </button>
+            </li>
         </ul>
     </div>
 </div>
@@ -100,6 +105,35 @@
     </div>
 </div>
 </div>
+
+
+<div id="enunciado-modal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Ejercicio 26</h4>
+        </div>
+        <div class="modal-body">
+            <p>Desde el momento en que se presenta una petición de información hasta el momento en que se entrega, una base
+            de datos demora un tiempo que responde a la siguiente función:</p>
+            <p>Tiempo respuesta = <code>0,1 seg + x seg</code> . (número de procesos ejecutándose en ese momento)</p>
+            <p>Donde x es un tiempo que responde a una distribución normal de media 10 segundos y desviación estándar 5
+            segundos.</p>
+            <p>Los procesos llegan a la base de datos de 20 terminales, cada una de las cuales ejecuta una consulta cada 200
+            segundos en promedio (distribución exponencial), más 15 segundos.</p>
+            <ul>
+                <li>¿Determinar la cantidad máxima de procesos trabajando simultáneamente?</li>
+                <li>¿Cuál es la demora promedio de respuesta de la base de datos?</li>
+                <li>¿Cuánto es el tiempo ocioso de la base de datos?</li>
+                <li>¿Cuál es la demora máxima de un proceso?</li>
+                <li>¿Cuál es la probabilidad de que existan 8 o más procesos simultáneamente?</li>
+            </ul>
+        </div>
+    </div>
+  </div>
+</div>
+
 
 {% if stats %}
 
