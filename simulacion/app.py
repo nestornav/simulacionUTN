@@ -21,6 +21,11 @@ cli_manager.add_command("runserver", Server(use_reloader=True))
 
 Bootstrap(app)
 
+dmedia_respuesta = 10
+ddesv_respuesta = 5
+dmedia_consulta = 200
+dnumero_corridas = 100
+
 
 # =============================================================================
 # ROUTES
@@ -28,7 +33,11 @@ Bootstrap(app)
 
 @app.route("/")
 def index():
-    return render_template('index.html')
+    return render_template(
+    	'index.html', media_respuesta=dmedia_respuesta, 
+		desv_respuesta=ddesv_respuesta, media_consulta=dmedia_consulta,
+    	numero_corridas=dnumero_corridas)
+
 
 @app.route("/run_simulation",methods=["POST"])
 def run_simulation():
@@ -37,9 +46,12 @@ def run_simulation():
 	media_consulta = float(request.form["media_consulta"])
 	numero_corridas = int(request.form["numero_corridas"])
 	
-	resultado = sim.simulate(media_respuesta, desv_respuesta, media_consulta, numero_corridas)
+	resultados = sim.simulate(numero_corridas, media_respuesta, desv_respuesta, media_consulta)
 	
-	return "lala"
+	return render_template('index.html', resultados=resultados, media_respuesta=media_respuesta, 
+		desv_respuesta=desv_respuesta, media_consulta=media_consulta,
+    	numero_corridas=numero_corridas)
+
 	
 
 

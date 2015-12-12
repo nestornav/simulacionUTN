@@ -15,22 +15,22 @@
   		<div class="col-md-5">
   			<h4>Par&aacute;metrosTiempo de Respueta Base de Datos</h4>
   			<label>Media</label>
-		  	<input id="media_respuesta" name="media_respuesta" type="number"/>
+		  	<input id="media_respuesta" name="media_respuesta" type="number" value="{{media_respuesta}}"/>
 		  
 		  	<label>Desviaci&oacute;n</label>
-		  	<input id="desv_respuesta" name="desv_respuesta" type="number"/>
+		  	<input id="desv_respuesta" name="desv_respuesta" type="number" value="{{desv_respuesta}}"/>
   		</div>
 
   		<div class="col-md-4">
   			<h4>Par&aacute;metros Tiempo Ejecución Terminales</h4>
   			<label>Media</label>
-		  	<input id="media_consulta" name="media_consulta" type="number"/>
+		  	<input id="media_consulta" name="media_consulta" type="number" value="{{media_consulta}}"/>
   		</div>
       
       <div class="col-md-3">
         <h4>Cantitdad de Corridas</h4>
         <label>Cantidad</label>
-        <input id="numero_corridas" name="numero_corridas" type="number"/>
+        <input id="numero_corridas" name="numero_corridas" type="number" value="{{numero_corridas}}"/>
 		    <button class="btn btn-primary" type="submit">Ejecutar</button>
       </div>
   	</div>    
@@ -41,18 +41,35 @@
   		<table id="data" class="table table-hover table-striped">
   			<thead>
 		      <tr>
+            <th>Iteraci&oacute;n</th>
 		        <th>Reloj</th>
 		        <th>Evento</th>		        
 		        <th>Tiempo</th>
 		        <th>Reloj</th>
 		        <th>Estado DB</th>		        
-		        <th>Tiempo</th>
-		        <th>Reloj</th>
+		        <th>Tiempo</th>		        
 		        <th>Proc. Activo</th>
+            <th>DB Ocupada</th>
+            <th>Tiempo Ocioso</th>
 		      </tr>
     		</thead>
     		
     		<tbody>
+
+          {% for resultado in (resultados or []) %}
+            <tr>
+              <td>{{resultado.iteration}}</td>
+              <td>{{resultado.reloj}}</td>
+              <td>{{resultado.evento}}</td>
+              <td>{{resultado.tiempo_consulta_rnd}}</td>
+              <td>{{resultado.tiempo_consulta_total}}</td>
+              <td>{{resultado.tiempo_respuesta_rnd_db}}</td>
+              <td>{{resultado.tiempo_respuesta_total}}</td>
+              <td>{% if resultado.procesos_activos %} Si {% else %} No {% endif %}</td>
+              <td>{% if resultado.db_ocupada %} Si {% else %} No {% endif %}</td>
+              <td>{{resultado.tiempo_ocioso}}</td>
+            </tr>
+          {%endfor%}
     		</tbody>
   		</table>
   	</div>
