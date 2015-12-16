@@ -25,6 +25,7 @@ def siguiente_consulta(mean):
 def simulate(numero_corridas, media_respuesta, desv_respuesta, media_consulta):
     reloj, db_ocupada, procesos_activos = 0., False, 0
     tiempo_consulta_total, tiempo_respuesta_total = None, None
+    tiempo_inicio_ocio, tiempo_fin_ocio = 0., 0.
 
     respuestas = []
     #import ipdb;ipdb.set_trace()
@@ -34,17 +35,22 @@ def simulate(numero_corridas, media_respuesta, desv_respuesta, media_consulta):
 
             evento = "inicio"
             tiempo_consulta_total = tiempo_consulta_rnd + reloj
-            tiempo_respuesta_rnd_db = 0
-            tiempo_respuesta_total = 0
+            tiempo_respuesta_rnd_db = 0.
+            tiempo_respuesta_total = 0.
 
         elif reloj == tiempo_consulta_total:
             evento = "Nueva Consulta"
             tiempo_consulta_rnd = siguiente_consulta(media_consulta)
             tiempo_consulta_total = tiempo_consulta_rnd + reloj
 
+            if procesos_activos == 0:
+                tiempo_fin_ocio = reloj - tiempo_inicio_ocio
+                #tiempo_inicio_ocio = tiempo_fin_ocio
+                
             tiempo_respuesta_rnd_db = tiempo_respuesta(media_respuesta, desv_respuesta)
-            tiempo_respuesta_total = tiempo_respuesta_rnd_db + reloj
+            tiempo_respuesta_total = tiempo_respuesta_rnd_db + reloj          
             procesos_activos += 1
+          
 
         elif reloj == tiempo_respuesta_total:
             evento = "Fin Respuesta"
@@ -52,10 +58,11 @@ def simulate(numero_corridas, media_respuesta, desv_respuesta, media_consulta):
 
             if procesos_activos > 0:
                 tiempo_respuesta_rnd_db = tiempo_respuesta(media_respuesta, desv_respuesta)
-                tiempo_respuesta_total = tiempo_respuesta_rnd_db + reloj
+                tiempo_respuesta_total = tiempo_respuesta_rnd_db + reloj                
             else:
-                tiempo_respuesta_rnd_db = 0
-                tiempo_respuesta_total = 0
+                tiempo_respuesta_rnd_db = 0.
+                tiempo_respuesta_total = 0.
+                tiempo_inicio_ocio = reloj
 
 
         db_ocupada = procesos_activos > 0
@@ -64,7 +71,7 @@ def simulate(numero_corridas, media_respuesta, desv_respuesta, media_consulta):
                 iteration=iterations, reloj=reloj, evento=evento,
                 tiempo_consulta_rnd=tiempo_consulta_rnd, tiempo_consulta_total=tiempo_consulta_total,
                 tiempo_respuesta_rnd_db=tiempo_respuesta_rnd_db, tiempo_respuesta_total=tiempo_respuesta_total,
-                procesos_activos=procesos_activos, db_ocupada=db_ocupada, tiempo_ocioso=0)
+                procesos_activos=procesos_activos, db_ocupada=db_ocupada, tiempo_ocioso=tiempo_fin_ocio)
         respuestas.append(respuesta)
 
         if tiempo_respuesta_total >0:

@@ -55,7 +55,7 @@ def run_simulation():
     proc_active = sim.to_ndarray(resultados, "procesos_activos")
     stats = {
         "max_process": proc_active.max(),
-        "demora_promedio":  sim.to_ndarray(resultados, "tiempo_respuesta_total").mean(),
+        "demora_promedio":  sim.to_ndarray(resultados, "tiempo_respuesta_rnd_db").mean(),
         "tiempo_ocioso": sim.to_ndarray(resultados, "tiempo_ocioso").sum(),
         "demora_maxima": sim.to_ndarray(resultados, "tiempo_consulta_rnd").max(),
         "promedio_gt8": (proc_active >= 8).sum() / float(len(proc_active))
